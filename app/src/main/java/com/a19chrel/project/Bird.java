@@ -23,6 +23,7 @@ public class Bird {
         this.name = name;
         this.quantity = quantity;
         this.category = category;
+        this.location = location;
         this.pictureUrl = pictureUrl;
     }
 
