@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayAdapter<String> adapter;
     private ArrayList<String> birdNames = new ArrayList<>();
+    private List<Bird> birdList = new ArrayList<>();
 
 
     @Override
@@ -117,9 +119,14 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++){
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     final String name = jsonObject.getString("name");
+                    final String id = jsonObject.getString("ID");
+                    final String family = jsonObject.getString("category");
+                    final String pictureURL = jsonObject.getString("auxdata");
+                    final int quantity = jsonObject.getInt("cost");
                     birdNames.add(name);
 
-
+                    Bird b = new Bird(id, name, quantity, family, pictureURL);
+                    birdList.add(b);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -145,7 +152,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
-            Log.e( "onOptionsItemSelected: ", "About");
+            Intent intent = new Intent(MainActivity.this, about_activity.class);
+            startActivity(intent);
             return true;
         }
         if (id == R.id.action_refreshlist) {
