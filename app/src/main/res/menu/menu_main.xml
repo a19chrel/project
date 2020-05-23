@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context="com.a19chrel.myapplication.MainActivity">
+    <item
+        android:id="@+id/action_refreshlist"
+        android:orderInCategory="100"
+        android:title="@string/menu_item_refresh"
+        app:showAsAction="never" />
+<item
+    android:id="@+id/action_about"
+    android:orderInCategory="100"
+    android:title="@string/menu_item_about"
+    app:showAsAction="never" />
+</menu>
