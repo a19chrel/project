@@ -3,4 +3,5 @@
     <string name="button">Refresh</string>
     <string name="menu_item_about">About</string>
     <string name="menu_item_refresh">Refresh</string>
+    <string name="close">Close</string>
 </resources>

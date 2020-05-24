@@ -4,15 +4,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ListView
-        android:id="@+id/listview"
-        android:layout_width="377dp"
-        android:layout_height="345dp"
-        android:layout_marginTop="32dp"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="322dp"
+        android:layout_height="478dp"
+        android:text="This application is for pepol that are intrested to know more about the most common birds in Sweden. If you click on a name in the list of bird more information will be displayed included a picture of the bird. Created by: Christian Elmhäll"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-    </ListView>
-
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

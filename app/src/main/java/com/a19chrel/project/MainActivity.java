@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -47,6 +48,19 @@ public class MainActivity extends AppCompatActivity {
         ListView mylistview = findViewById(R.id.listview);
         mylistview.setAdapter(adapter);
 
+        mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, birdinfoActivity.class);
+                intent.putExtra("name", birdList.get(position).getName());
+                intent.putExtra("quantity", birdList.get(position).getQuantity());
+                intent.putExtra("category", birdList.get(position).getCategory());
+                intent.putExtra("pictureUrl", birdList.get(position).getPictureUrl());
+                startActivity(intent);
+            }
+        });
+
+        getData();
     }
     @SuppressLint("StaticFieldLeak")
     private class JsonTask extends AsyncTask<String, String, String> {
@@ -157,11 +171,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_refreshlist) {
-            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a19chrel");
+            getData();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void getData(){
+        new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a19chrel");
     }
 
 }
