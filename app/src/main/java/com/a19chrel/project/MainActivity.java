@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
 
         getData();
     }
+
+    private void toast(String string){
+        Context context = getApplicationContext();
+        CharSequence text = string;
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
     @SuppressLint("StaticFieldLeak")
     private class JsonTask extends AsyncTask<String, String, String> {
 
@@ -142,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     Bird b = new Bird(id, name, quantity, family, pictureURL);
                     birdList.add(b);
                 }
+                toast("Uppdatering av fågellista är slutförd.");
                 adapter.notifyDataSetChanged();
             }
             catch (JSONException e){
@@ -166,8 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
-            Intent intent = new Intent(MainActivity.this, about_activity.class);
-            startActivity(intent);
+            toast("Detta är en mobilapplikation för personer som är intreserade av de mest vanligaste fåglarna i Sverige. Om man klickar på ett namn i listan så får man upp mer detaljerad information om fåglen inkluserat en bild.\nApplikationen är skapad av: Christian Elmhäll");
             return true;
         }
         if (id == R.id.action_refreshlist) {

@@ -13,6 +13,8 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -33,14 +35,12 @@ public class birdinfoActivity extends AppCompatActivity {
             String category = extras.getString("category");
             String pictureUrl = extras.getString("pictureUrl");
 
-            birdInfo.add("Name: " + name);
-            birdInfo.add("Quantity in sweden: " + quantity);
-            birdInfo.add("Family: " + category);
+            birdInfo.add("Namn: " + name);
+            birdInfo.add("Antal i Sverige: " + quantity);
+            birdInfo.add("Fågelfamilj: " + category);
 
-            new DownloadImageTask((ImageView) findViewById(R.id.birdinfo_imageview))
-                    .execute(pictureUrl);
-
-
+            ImageView img = findViewById(R.id.birdinfo_imageview);
+            Picasso.get().load(pictureUrl).into(img);
 
             adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.listview_layout,R.id.listitem,birdInfo);
             ListView mylistview = findViewById(R.id.birdinfo_listview);
@@ -56,31 +56,5 @@ public class birdinfoActivity extends AppCompatActivity {
                                    }
                                }
         );
-    }
-
-    //Code by: Andriod Devoloper on StackOverflow
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
     }
 }
