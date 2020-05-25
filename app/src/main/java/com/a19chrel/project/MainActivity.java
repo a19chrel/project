@@ -146,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
                     final String name = jsonObject.getString("name");
                     final String id = jsonObject.getString("ID");
                     final String family = jsonObject.getString("category");
+                    final String quantity = jsonObject.getString("company");
                     final String pictureURL = jsonObject.getString("auxdata");
-                    final int quantity = jsonObject.getInt("cost");
                     birdNames.add(name);
 
                     Bird b = new Bird(id, name, quantity, family, pictureURL);

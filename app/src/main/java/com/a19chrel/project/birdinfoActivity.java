@@ -1,10 +1,6 @@
 package com.a19chrel.project;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class birdinfoActivity extends AppCompatActivity {
@@ -31,7 +26,7 @@ public class birdinfoActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String name = extras.getString("name");
-            int quantity = extras.getInt("quantity");
+            String quantity = extras.getString("quantity");
             String category = extras.getString("category");
             String pictureUrl = extras.getString("pictureUrl");
 
